@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Groups clsid="{3125E937-EB16-4b4c-9934-544FC6D24D26}"><User clsid="{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}" name="Administrator (内置)" image="2" changed="2020-11-27 00:40:38" uid="{F98D0F2E-BC44-4616-A944-3D76632E0F2B}"><Properties action="U" newName="" fullName="" description="" cpassword="8Gg4ajkVTHjn7X3O8e19NJ3OKP9ELxlbj03HeSfnTsk" changeLogon="0" noChange="0" neverExpires="1" acctDisabled="0" subAuthority="RID_ADMIN" userName="Administrator (内置)"/></User>
+</Groups>
