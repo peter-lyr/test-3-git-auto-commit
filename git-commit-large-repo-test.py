@@ -34,8 +34,26 @@ def split_large_file(file_path, chunk_size=50 * 1024 * 1024):
         return False
 
 
+def find_large_files_in_directory(directory, min_size_mb=50):
+    """递归查找目录中所有大于指定大小的文件"""
+    large_files = []
+    try:
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                file_path = os.path.join(root, file)
+                try:
+                    size_mb = get_file_size_mb(file_path)
+                    if size_mb > min_size_mb:
+                        large_files.append((file_path, size_mb))
+                except OSError:
+                    continue
+    except Exception as e:
+        print(f"❌ Error scanning directory {directory}: {e}")
+    return large_files
+
+
 def process_large_untracked_files():
-    """处理所有超过50MB的未跟踪文件"""
+    """处理所有超过50MB的未跟踪文件和文件夹中的大文件"""
     try:
         result = subprocess.run(
             ["git", "status", "--porcelain"],
@@ -47,17 +65,24 @@ def process_large_untracked_files():
         )
         lines = result.stdout.strip().split("\n") if result.stdout.strip() else []
         large_files = []
+        processed_dirs = set()
         for line in lines:
             if line.strip() and line.startswith("??"):
-                file_path = line[3:].strip()
-                if " -> " in file_path:
-                    file_path = file_path.split(" -> ")[1]
-                if file_path.startswith('"') and file_path.endswith('"'):
-                    file_path = file_path[1:-1]
-                if os.path.isfile(file_path):
-                    size_mb = get_file_size_mb(file_path)
+                item_path = line[3:].strip()
+                if " -> " in item_path:
+                    item_path = item_path.split(" -> ")[1]
+                if item_path.startswith('"') and item_path.endswith('"'):
+                    item_path = item_path[1:-1]
+                if os.path.isfile(item_path):
+                    size_mb = get_file_size_mb(item_path)
                     if size_mb > 50:
-                        large_files.append((file_path, size_mb))
+                        large_files.append((item_path, size_mb))
+                elif os.path.isdir(item_path):
+                    dir_path = os.path.normpath(item_path)
+                    if dir_path not in processed_dirs:
+                        processed_dirs.add(dir_path)
+                        dir_large_files = find_large_files_in_directory(dir_path)
+                        large_files.extend(dir_large_files)
         if not large_files:
             return
         print(f"🔍 Found {len(large_files)} large untracked files (>50MB):")
@@ -81,7 +106,7 @@ def process_single_large_file(file_path):
         if os.path.exists(gitignore_path):
             with open(gitignore_path, "r", encoding="utf-8") as f:
                 gitignore_content = f.read().splitlines()
-        patterns_to_add = [file_name, f"{base_name}.merged{file_ext}"]
+        patterns_to_add = [file_name, f"{base_name}{file_ext}.merged"]
         for pattern in patterns_to_add:
             if pattern not in gitignore_content:
                 gitignore_content.append(pattern)
@@ -259,6 +284,10 @@ def commit_in_batches(files_dict, deleted_files, total_size):
         else:
             if current_batch:
                 batch_num += 1
+                print(f"\n🟢 Starting Batch {batch_num}/{total_batches}")
+                print(
+                    f"📈 Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
+                )
                 commit_batch(current_batch, current_size, batch_num, total_batches)
                 committed_size += current_size
                 print(f"✅ Completed Batch {batch_num}/{total_batches}")
@@ -270,6 +299,10 @@ def commit_in_batches(files_dict, deleted_files, total_size):
             current_size = size
     if current_batch:
         batch_num += 1
+        print(f"\n🟢 Starting Batch {batch_num}/{total_batches}")
+        print(
+            f"📈 Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
+        )
         commit_batch(current_batch, current_size, batch_num, total_batches)
         committed_size += current_size
         print(f"✅ Completed Batch {batch_num}/{total_batches}")
@@ -320,8 +353,8 @@ def commit_batch(file_paths, batch_total_size, batch_number, total_batches):
         if not os.path.exists(normalized_path):
             print(f"⚠️  Path no longer exists: {normalized_path}")
             continue
-        exit_code = os.system(f'git add "{normalized_path}"')
-        if exit_code == 0:
+        success = run_git_commands([f'git add "{normalized_path}"'])
+        if success:
             successful_adds += 1
         else:
             print(f"❌ git add failed: {normalized_path}")
