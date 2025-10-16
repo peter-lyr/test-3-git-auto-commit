@@ -192,10 +192,6 @@ def commit_in_batches(files_dict, deleted_files, total_size):
         else:
             if current_batch:
                 batch_num += 1
-                print(f"\n🟢 Starting Batch {batch_num}/{total_batches}")
-                print(
-                    f"📈 Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
-                )
                 commit_batch(current_batch, current_size, batch_num, total_batches)
                 committed_size += current_size
                 print(f"✅ Completed Batch {batch_num}/{total_batches}")
@@ -210,10 +206,6 @@ def commit_in_batches(files_dict, deleted_files, total_size):
     # 提交最后一批
     if current_batch:
         batch_num += 1
-        print(f"\n🟢 Starting Batch {batch_num}/{total_batches}")
-        print(
-            f"📈 Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
-        )
         commit_batch(current_batch, current_size, batch_num, total_batches)
         committed_size += current_size
         print(f"✅ Completed Batch {batch_num}/{total_batches}")
