@@ -9,7 +9,7 @@ commit_info_file = ""
 
 
 def get_git_status():
-    """获取git状态信息，返回修改和未跟踪的文件列表"""
+    """获取git状态信息，返回修改、未跟踪和已删除的文件列表"""
     try:
         # 明确指定编码为UTF-8
         result = subprocess.run(
@@ -23,6 +23,8 @@ def get_git_status():
         lines = result.stdout.strip().split("\n") if result.stdout.strip() else []
 
         file_list = []
+        deleted_files = []  # 专门存储已删除的文件
+
         for line in lines:
             if line.strip():
                 # 解析状态和文件名
@@ -37,15 +39,19 @@ def get_git_status():
                 if filename.startswith('"') and filename.endswith('"'):
                     filename = filename[1:-1]
 
-                file_list.append(filename)
+                # 处理已删除的文件
+                if "D" in status:
+                    deleted_files.append(filename)
+                else:
+                    file_list.append(filename)
 
-        return file_list
+        return file_list, deleted_files
     except subprocess.CalledProcessError as e:
         print(f"Error getting git status: {e}")
-        return []
+        return [], []
     except Exception as e:
         print(f"Unexpected error: {e}")
-        return []
+        return [], []
 
 
 def scan_directory_recursive(path):
@@ -86,10 +92,17 @@ def get_file_size_mb(file_path):
 
 def scan_and_categorize_files():
     """扫描并分类文件"""
-    git_files = get_git_status()
-    if not git_files:
-        print("No modified or untracked files found.")
-        return {}
+    git_files, deleted_files = get_git_status()
+
+    # 打印已删除的文件
+    if deleted_files:
+        print(f"Found {len(deleted_files)} deleted files:")
+        for file_path in deleted_files:
+            print(f"  {file_path}")
+
+    if not git_files and not deleted_files:
+        print("No modified, untracked or deleted files found.")
+        return {}, []
 
     # 收集所有需要处理的文件路径
     all_files = []
@@ -111,9 +124,9 @@ def scan_and_categorize_files():
         else:
             all_files.append((file_path, get_file_size_mb(file_path)))
 
-    if not all_files:
+    if not all_files and not deleted_files:
         print("No valid files to process.")
-        return {}
+        return {}, []
 
     # 按目录分组，过滤掉空目录
     dir_files_map = defaultdict(list)
@@ -167,27 +180,38 @@ def scan_and_categorize_files():
             result_dict[file_path] = size_mb
             processed_files.add(file_path)
 
-    return result_dict
+    return result_dict, deleted_files
 
 
-def execute_git_commands(files_dict):
+def execute_git_commands(files_dict, deleted_files):
     """执行git命令"""
-    if not files_dict:
+    if not files_dict and not deleted_files:
         print("No files to commit.")
         return False
 
     # 打印结果字典
-    print("Files/Folders to be committed:")
-    total_size = 0
-    for path, size in files_dict.items():
-        print(f"  {path}: {size:.2f} MB")
-        total_size += size
+    if files_dict:
+        print("Files/Folders to be committed:")
+        total_size = 0
+        for path, size in files_dict.items():
+            print(f"  {path}: {size:.2f} MB")
+            total_size += size
 
-    print(f"\nTotal size: {total_size:.2f} MB")
+        print(f"\nTotal size: {total_size:.2f} MB")
+    else:
+        total_size = 0
 
-    if total_size <= 100:
+    # 如果有已删除的文件，也计算在内
+    deleted_count = len(deleted_files)
+    if deleted_files:
+        print(f"\nDeleted files to be committed: {deleted_count} files")
+        for file_path in deleted_files:
+            print(f"  {file_path}")
+
+    # 如果总大小小于等于100MB，或者只有已删除的文件，一次性提交
+    if total_size <= 100 or (total_size == 0 and deleted_files):
         # 直接提交所有文件
-        print("\nTotal size <= 100MB, committing all files at once...")
+        print("\nCommitting all files at once...")
         try:
             print("> git add -A")
             exit_code = os.system("git add -A")
@@ -295,6 +319,11 @@ def execute_git_commands(files_dict):
             print(
                 f"Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
             )
+
+        # 如果有已删除的文件，在最后一批次后提交
+        if deleted_files:
+            print("\n--- Committing Deleted Files ---")
+            commit_deleted_files(deleted_files)
 
         return True
 
@@ -412,6 +441,36 @@ def commit_batch(file_paths, batch_total_size, batch_number, total_batches):
         print(f"Error committing batch: {e}")
 
 
+def commit_deleted_files(deleted_files):
+    """提交已删除的文件"""
+    print(f"Committing {len(deleted_files)} deleted files...")
+
+    try:
+        # 使用 git add -u 来暂存所有已删除的文件
+        # git add -u 会暂存所有已跟踪文件的修改和删除，但不包括新文件
+        print("> git add -u")
+        exit_code = os.system("git add -u")
+        if exit_code != 0:
+            print(f"git add -u failed with exit code: {exit_code}")
+
+        # git commit
+        print(f"> git commit -F {commit_info_file}")
+        exit_code = os.system(f"git commit -F {commit_info_file}")
+        if exit_code != 0:
+            print(f"git commit failed with exit code: {exit_code}")
+
+        # git push
+        print("> git push")
+        exit_code = os.system("git push")
+        if exit_code != 0:
+            print(f"git push failed with exit code: {exit_code}")
+
+        return True
+    except Exception as e:
+        print(f"Error committing deleted files: {e}")
+        return False
+
+
 def main():
     global commit_info_file
     if len(sys.argv) != 2:
@@ -426,14 +485,14 @@ def main():
         sys.exit(1)
 
     # 扫描和分类文件
-    files_dict = scan_and_categorize_files()
+    files_dict, deleted_files = scan_and_categorize_files()
 
-    if not files_dict:
+    if not files_dict and not deleted_files:
         print("No files to process.")
         return
 
     # 执行git命令
-    success = execute_git_commands(files_dict)
+    success = execute_git_commands(files_dict, deleted_files)
 
     if success:
         print("\nAll operations completed successfully!")
