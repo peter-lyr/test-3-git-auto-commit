@@ -56,6 +56,7 @@ def get_total_size(files):
     total = 0
     for filepath in files:
         total += get_file_size(filepath)
+        print(filepath, "size:", get_file_size(filepath))
     return total
 
 
