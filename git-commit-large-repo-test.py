@@ -307,40 +307,100 @@ def commit_batch(file_paths, batch_total_size, batch_number, total_batches):
 
     # 打印批次中每个文件/文件夹的大小
     print("Batch contents:")
+    valid_paths = []  # 存储有效的路径
+
     for file_path in file_paths:
+        # 检查路径是否存在
+        if not os.path.exists(file_path):
+            print(f"  Warning: Path does not exist: {file_path}")
+            continue
+
         # 计算文件/文件夹的大小
         if os.path.isdir(file_path):
             # 如果是文件夹，计算文件夹下所有文件的总大小
             dir_size = 0
+            file_count = 0
             for root, dirs, files in os.walk(file_path):
                 for file in files:
                     file_path_full = os.path.join(root, file)
                     try:
                         dir_size += os.path.getsize(file_path_full)
+                        file_count += 1
                     except OSError:
                         pass
+
+            # 检查目录是否为空
+            if file_count == 0:
+                print(f"  Warning: Directory is empty: {file_path}")
+                continue
+
             dir_size_mb = dir_size / (1024 * 1024)
-            print(f"  {file_path}: {dir_size_mb:.2f} MB (folder)")
+            print(f"  {file_path}: {dir_size_mb:.2f} MB (folder, {file_count} files)")
+            valid_paths.append(file_path)
         else:
             # 如果是文件，直接获取大小
             file_size_mb = get_file_size_mb(file_path)
             print(f"  {file_path}: {file_size_mb:.2f} MB")
+            valid_paths.append(file_path)
+
+    # 如果没有有效路径，跳过这个批次
+    if not valid_paths:
+        print("No valid paths in this batch, skipping...")
+        return
 
     try:
         # git add 每个文件
-        for file_path in file_paths:
+        successful_adds = 0
+        for file_path in valid_paths:
             print(f"> git add {file_path}")
-            # 对文件路径进行转义，防止特殊字符问题
-            escaped_path = file_path.replace('"', '\\"')
-            exit_code = os.system(f'git add "{escaped_path}"')
-            if exit_code != 0:
-                print(f"git add failed for {file_path} with exit code: {exit_code}")
+
+            # 使用更安全的路径处理方法
+            # 对路径进行标准化处理
+            normalized_path = os.path.normpath(file_path)
+
+            # 检查路径是否仍然存在
+            if not os.path.exists(normalized_path):
+                print(f"  Warning: Path no longer exists: {normalized_path}")
+                continue
+
+            # 使用原始路径而不是转义路径，因为os.system会自动处理空格
+            exit_code = os.system(f'git add "{normalized_path}"')
+            if exit_code == 0:
+                successful_adds += 1
+            else:
+                print(
+                    f"  git add failed for {normalized_path} with exit code: {exit_code}"
+                )
+
+                # 尝试使用相对路径
+                try:
+                    relative_path = os.path.relpath(normalized_path)
+                    exit_code = os.system(f'git add "{relative_path}"')
+                    if exit_code == 0:
+                        successful_adds += 1
+                        print(
+                            f"  Successfully added using relative path: {relative_path}"
+                        )
+                    else:
+                        print(f"  Also failed with relative path: {relative_path}")
+                except Exception as e:
+                    print(f"  Error getting relative path: {e}")
+
+        # 如果没有成功添加任何文件，跳过提交和推送
+        if successful_adds == 0:
+            print("No files were successfully added, skipping commit and push...")
+            return
+
+        print(f"Successfully added {successful_adds}/{len(valid_paths)} files")
 
         # git commit
         print(f"> git commit -F {commit_info_file}")
         exit_code = os.system(f"git commit -F {commit_info_file}")
         if exit_code != 0:
             print(f"git commit failed with exit code: {exit_code}")
+            # 如果提交失败，可能需要重置已添加的文件
+            os.system("git reset")
+            return
 
         # git push
         print("> git push")
