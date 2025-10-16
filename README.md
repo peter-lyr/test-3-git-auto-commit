@@ -5,3 +5,4 @@
 测试git add folder - 4
 
 测试git add folder - 5
+测试git add folder - 8
