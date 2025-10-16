@@ -19,19 +19,13 @@ def get_git_status():
         file_list = []
         for line in lines:
             if line.strip():
-                # print("----", line)
                 # 解析状态和文件名
                 status = line[:2].strip()
                 filename = line[3:].strip()
-                # print(status, "-----", filename)
 
                 # 处理重命名的情况
                 if " -> " in filename:
                     filename = filename.split(" -> ")[1]
-
-                # # 过滤掉已删除的文件
-                # if status != "D":
-                #     file_list.append((status, filename))
 
                 # 去除文件名两端的引号
                 if filename.startswith('"') and filename.endswith('"'):
@@ -190,16 +184,22 @@ def execute_git_commands(files_dict):
         print("\nTotal size <= 100MB, committing all files at once...")
         try:
             print("> git add -A")
-            subprocess.run(["git", "add", "-A"], check=True)
+            exit_code = os.system("git add -A")
+            if exit_code != 0:
+                print(f"git add -A failed with exit code: {exit_code}")
 
             print(f"> git commit -F {commit_info_file}")
-            subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
+            exit_code = os.system(f"git commit -F {commit_info_file}")
+            if exit_code != 0:
+                print(f"git commit failed with exit code: {exit_code}")
 
             print("> git push")
-            subprocess.run(["git", "push"], check=True)
+            exit_code = os.system("git push")
+            if exit_code != 0:
+                print(f"git push failed with exit code: {exit_code}")
 
             return True
-        except subprocess.CalledProcessError as e:
+        except Exception as e:
             print(f"Error executing git commands: {e}")
             return False
     else:
@@ -267,18 +267,25 @@ def commit_batch(file_paths, batch_total_size):
         # git add 每个文件
         for file_path in file_paths:
             print(f"> git add {file_path}")
-            subprocess.run(["git", "add", file_path], check=True)
-        # print("git add completed for batch")
+            # 对文件路径进行转义，防止特殊字符问题
+            escaped_path = file_path.replace('"', '\\"')
+            exit_code = os.system(f'git add "{escaped_path}"')
+            if exit_code != 0:
+                print(f"git add failed for {file_path} with exit code: {exit_code}")
 
         # git commit
         print(f"> git commit -F {commit_info_file}")
-        subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
+        exit_code = os.system(f"git commit -F {commit_info_file}")
+        if exit_code != 0:
+            print(f"git commit failed with exit code: {exit_code}")
 
         # git push
         print("> git push")
-        subprocess.run(["git", "push"], check=True)
+        exit_code = os.system("git push")
+        if exit_code != 0:
+            print(f"git push failed with exit code: {exit_code}")
 
-    except subprocess.CalledProcessError as e:
+    except Exception as e:
         print(f"Error committing batch: {e}")
 
 
