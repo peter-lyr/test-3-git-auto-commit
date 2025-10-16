@@ -1,9 +1,137 @@
 import os
 import sys
 import subprocess
+import shutil
 from collections import defaultdict
 
 commit_info_file = ""
+
+
+def split_large_file(file_path, chunk_size=50 * 1024 * 1024):  # 50MB
+    """拆分大文件为多个小文件"""
+    try:
+        file_dir = os.path.dirname(file_path)
+        file_name = os.path.basename(file_path)
+        base_name = os.path.splitext(file_name)[0]
+
+        # 创建拆分文件目录
+        split_dir = os.path.join(file_dir, f"{base_name}_split")
+        os.makedirs(split_dir, exist_ok=True)
+
+        # 读取并拆分文件
+        with open(file_path, "rb") as f:
+            chunk_num = 1
+            while True:
+                chunk = f.read(chunk_size)
+                if not chunk:
+                    break
+
+                # 写入拆分文件
+                chunk_file = os.path.join(split_dir, f"{base_name}.part{chunk_num:03d}")
+                with open(chunk_file, "wb") as chunk_f:
+                    chunk_f.write(chunk)
+
+                chunk_num += 1
+
+        print(f"✅ Split {file_path} into {chunk_num-1} parts")
+        return True
+    except Exception as e:
+        print(f"❌ Error splitting file {file_path}: {e}")
+        return False
+
+
+def process_large_untracked_files():
+    """处理所有超过50MB的未跟踪文件"""
+    try:
+        # 获取未跟踪文件
+        result = subprocess.run(
+            ["git", "status", "--porcelain"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=True,
+        )
+        lines = result.stdout.strip().split("\n") if result.stdout.strip() else []
+
+        large_files = []
+        for line in lines:
+            if line.strip() and line.startswith("??"):
+                file_path = line[3:].strip()
+                if " -> " in file_path:
+                    file_path = file_path.split(" -> ")[1]
+                if file_path.startswith('"') and file_path.endswith('"'):
+                    file_path = file_path[1:-1]
+
+                # 检查文件大小
+                if os.path.isfile(file_path):
+                    size_mb = get_file_size_mb(file_path)
+                    if size_mb > 50:
+                        large_files.append((file_path, size_mb))
+
+        if not large_files:
+            return
+
+        print(f"🔍 Found {len(large_files)} large untracked files (>50MB):")
+        for file_path, size_mb in large_files:
+            print(f"   {file_path}: {size_mb:.2f} MB")
+
+        # 处理每个大文件
+        for file_path, size_mb in large_files:
+            process_single_large_file(file_path)
+
+    except Exception as e:
+        print(f"❌ Error processing large untracked files: {e}")
+
+
+def process_single_large_file(file_path):
+    """处理单个大文件"""
+    try:
+        file_dir = os.path.dirname(file_path)
+        file_name = os.path.basename(file_path)
+        base_name = os.path.splitext(file_name)[0]
+
+        print(f"\n📦 Processing large file: {file_path}")
+
+        # 1. 创建或更新.gitignore文件
+        gitignore_path = os.path.join(file_dir, ".gitignore")
+        gitignore_content = []
+
+        if os.path.exists(gitignore_path):
+            with open(gitignore_path, "r", encoding="utf-8") as f:
+                gitignore_content = f.read().splitlines()
+
+        # 添加原文件名和合并文件名到.gitignore
+        patterns_to_add = [file_name, f"{base_name}.merged"]
+        for pattern in patterns_to_add:
+            if pattern not in gitignore_content:
+                gitignore_content.append(pattern)
+
+        with open(gitignore_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(gitignore_content))
+
+        print(f"✅ Updated .gitignore in {file_dir}")
+
+        # 2. 复制git-merge-split-files.exe（如果不存在）
+        exe_name = "git-merge-split-files.exe"
+        target_exe_path = os.path.join(file_dir, exe_name)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        source_exe_path = os.path.join(current_dir, exe_name)
+
+        if not os.path.exists(target_exe_path) and os.path.exists(source_exe_path):
+            shutil.copy2(source_exe_path, target_exe_path)
+            print(f"✅ Copied {exe_name} to {file_dir}")
+        elif not os.path.exists(source_exe_path):
+            print(f"⚠️  {exe_name} not found in script directory")
+
+        # 3. 拆分大文件
+        if split_large_file(file_path):
+            print(f"✅ Successfully processed {file_path}")
+        else:
+            print(f"❌ Failed to process {file_path}")
+
+    except Exception as e:
+        print(f"❌ Error processing large file {file_path}: {e}")
 
 
 def get_git_status():
@@ -182,7 +310,7 @@ def commit_in_batches(files_dict, deleted_files, total_size):
     current_batch, current_size, committed_size, batch_num = [], 0, 0, 0
 
     for path, size in files_dict.items():
-        if size > 100:
+        if size > 50:
             print(f"⏭️  Skipping large file: {path} ({size:.2f} MB)")
             continue
 
@@ -293,7 +421,6 @@ def run_git_commands(commands):
         if exit_code != 0:
             print(f"❌ Command failed with exit code: {exit_code}")
             success = False
-            # 不立即返回，继续执行其他命令
     return success
 
 
@@ -307,6 +434,10 @@ def main():
     if not os.path.exists(commit_info_file):
         print(f"❌ Commit info file '{commit_info_file}' not found")
         sys.exit(1)
+
+    # 首先处理大文件
+    print("🔍 Checking for large untracked files...")
+    process_large_untracked_files()
 
     # 扫描和分类文件
     files_dict, deleted_files = scan_and_categorize_files()
