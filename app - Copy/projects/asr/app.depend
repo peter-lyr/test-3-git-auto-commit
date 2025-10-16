@@ -1,0 +1,627 @@
+# depslib dependency file v1.0
+1750765114 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_asr.c
+	"include.h"
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\include.h
+	"global.h"
+	"xcfg.h"
+	"config.h"
+	"io_def.h"
+	"api.h"
+	"func.h"
+	"bsp.h"
+	"modules.h"
+	"gui.h"
+	"plugin.h"
+	"res.h"
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\global.h
+	<stddef.h>
+	<stdarg.h>
+	<stdbool.h>
+	<stdlib.h>
+	<string.h>
+	"typedef.h"
+	"macro.h"
+	"clib.h"
+	"sfr.h"
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\typedef.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\macro.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\clib.h
+
+1743669432 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\sfr.h
+
+1755520165 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\xcfg.h
+
+1752830035 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\config.h
+	"config_define.h"
+	"config_extra.h"
+
+1755143548 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\config_define.h
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\config_extra.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\header\io_def.h
+	"global.h"
+	"config.h"
+	"sfr.h"
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api.h
+	"api_buffer.h"
+	"api_cm.h"
+	"api_music.h"
+	"api_sd.h"
+	"api_rtc.h"
+	"api_fs.h"
+	"api_device.h"
+	"api_update.h"
+	"api_dac.h"
+	"api_sysclk.h"
+	"api_msg.h"
+	"api_saradc.h"
+	"api_sys.h"
+	"api_pwr.h"
+	"api_key.h"
+	"api_gpio.h"
+	"api_midi.h"
+	"api_math.h"
+	"api_fft.h"
+	"api_sdadc.h"
+	"api_usb.h"
+	"api_uart.h"
+	"api_sdadc_dc.h"
+	"api_asr.h"
+	"api_alg.h"
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_buffer.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_cm.h
+
+1755143548 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_music.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_sd.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_rtc.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_fs.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_device.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_update.h
+
+1755163520 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_dac.h
+
+1745399895 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_sysclk.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_msg.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_saradc.h
+
+1754019179 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_sys.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_pwr.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_key.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_gpio.h
+
+1752584510 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_midi.h
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_math.h
+
+1752584510 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_fft.h
+
+1743492049 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_sdadc.h
+
+1752584510 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_usb.h
+
+1743669433 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_uart.h
+
+1754019179 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_sdadc_dc.h
+
+1744441753 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_asr.h
+
+1752830034 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_alg.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func.h
+	"func_clock.h"
+	"func_idle.h"
+	"func_music.h"
+	"func_usbdev.h"
+	"func_speaker.h"
+	"func_aux.h"
+	"func_lowpwr.h"
+	"func_exspiflash_music.h"
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_clock.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_idle.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_music.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_usbdev.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_speaker.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_aux.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_lowpwr.h
+
+1752227361 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_exspiflash_music.h
+	"spiflash/spiflash1.h"
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\spiflash\spiflash1.h
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp.h
+	"bsp_sys.h"
+	"bsp_param.h"
+	"bsp_dac.h"
+	"bsp_music.h"
+	"bsp_i2c.h"
+	"bsp_huart.h"
+	"bsp_ir.h"
+	"bsp_fs.h"
+	"bsp_spi_audio.h"
+	"bsp_uart.h"
+	"bsp_saradc.h"
+	"bsp_clk.h"
+	"bsp_rtc.h"
+	"bsp_timer.h"
+	"bsp_audio.h"
+	"bsp_eq.h"
+	"bsp_record.h"
+	"bsp_saradc.h"
+	"bsp_vbat.h"
+	"bsp_asr.h"
+	"bsp_voice.h"
+
+1752227358 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_sys.h
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_param.h
+
+1752830034 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_dac.h
+
+1754381898 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_music.h
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_i2c.h
+
+1743669432 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_huart.h
+
+1744441753 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_ir.h
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_fs.h
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_spi_audio.h
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_uart.h
+
+1743422244 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_saradc.h
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_clk.h
+
+1744275202 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_rtc.h
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_timer.h
+
+1743492048 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_audio.h
+
+1743669432 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_eq.h
+
+1752830034 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_record.h
+	"record_file.h"
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\record_file.h
+
+1743386449 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_vbat.h
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_asr.h
+
+1752830034 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_voice.h
+
+1752584510 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\modules.h
+	"fft/fft_proc.h"
+	"key/key_scan.h"
+	"key/matrix_key.h"
+	"spiflash/spiflash1.h"
+	"led/led.h"
+	"led/spi_led.h"
+	"spilcd/lcd_display.h"
+	"midi/midi.h"
+	"midi/midi_song.h"
+	"midi/midi_rec.h"
+	"midi/midi_keyboard.h"
+	"midi/midi_voice.h"
+	"midi/midi_metronome.h"
+	"key/tkey.h"
+	"dump/dump.h"
+	"voice/prevent_howling.h"
+
+1752227358 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\fft\fft_proc.h
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\key\key_scan.h
+
+1752227359 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\key\matrix_key.h
+
+1743492049 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\led\led.h
+
+1755519771 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\led\spi_led.h
+
+1743386452 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\spilcd\lcd_display.h
+
+1752584510 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi.h
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_song.h
+
+1743386452 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_rec.h
+
+1752584510 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_keyboard.h
+
+1743386452 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_voice.h
+
+1750765114 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_metronome.h
+
+1743669433 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\key\tkey.h
+
+1743669433 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\dump\dump.h
+
+1752830034 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\voice\prevent_howling.h
+
+1744441753 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\gui.h
+	"ledseg/ledseg_common.h"
+	"ledseg/display_ledseg.h"
+	"lcd/lcd.h"
+	"lcd/display_lcd.h"
+	"lcd/display_listbox.h"
+	"lcd/list_view.h"
+	"lcd/listbox.h"
+	"lcd/dialogbox.h"
+	"lcd/display_dialogbox.h"
+	"lcd/lcd_4c16s_3b.h"
+
+1743386453 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\ledseg\ledseg_common.h
+
+1752227362 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\display\ledseg\display_ledseg.h
+	"ledseg/ledseg_7p7s.h"
+
+1743386453 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\ledseg\ledseg_7p7s.h
+
+1743386452 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\lcd\lcd.h
+
+1743386452 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\lcd\list_view.h
+
+1743386453 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\lcd\listbox.h
+
+1743386452 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\lcd\dialogbox.h
+
+1744441753 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\lcd\lcd_4c16s_3b.h
+
+1752227362 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\plugin\plugin.h
+	"multi_lang.h"
+	"port_led.h"
+	"port_sd.h"
+	"port_linein.h"
+
+1752227362 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\plugin\multi_lang.h
+
+1752227362 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_led.h
+
+1752227362 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_sd.h
+
+1752227362 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_linein.h
+
+1752227362 z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\res.h
+
+1751338531 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_audio.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_clk.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_cm.c
+	"include.h"
+
+1755178473 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_dac.c
+	"include.h"
+	"bsp_dac.h"
+
+1743669432 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_eq.c
+	"include.h"
+
+1750765114 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_ext_dump.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_freqdet.c
+	"include.h"
+	"bsp_freqdet.h"
+
+1743386450 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_freqdet.h
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_fs.c
+	"include.h"
+
+1743669432 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_huart.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_i2c.c
+	"include.h"
+
+1744441753 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_ir.c
+	"include.h"
+
+1755519771 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_music.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_param.c
+	"include.h"
+
+1744111691 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_pwm.c
+	"include.h"
+	"bsp_pwm.h"
+
+1744111691 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_pwm.h
+
+1752830034 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_record.c
+	"include.h"
+
+1744275202 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_rtc.c
+	"include.h"
+
+1743422244 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_saradc.c
+	"include.h"
+
+1743669432 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_sdadc_dc.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_spi_audio.c
+	"include.h"
+
+1755171306 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_sys.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_timer.c
+	"include.h"
+
+1743386450 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_uart.c
+	"include.h"
+
+1753076951 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_vbat.c
+	"include.h"
+
+1752830034 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\bsp_voice.c
+	"include.h"
+
+1750765114 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\bsp\record_file.c
+	"include.h"
+	"record_file.h"
+
+1745496709 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\gui.c
+	"include.h"
+	"gui.h"
+
+1744441753 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\lcd\lcd_4c16s_3b.c
+	"include.h"
+	"lcd_4c16s_3b.h"
+
+1743386453 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\ledseg\ledseg_7p7s.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1743386453 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\gui\ledseg\ledseg_common.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1755143548 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\strong_symbol.c
+	"include.h"
+
+1743669433 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\dump\dump_huart.c
+	"include.h"
+
+1743669433 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\dump\dump_spi.c
+	"include.h"
+
+1752227358 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\fft\fft_proc.c
+	"include.h"
+	"fft_proc.h"
+
+1745300864 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\fft\fft_table.c
+	"include.h"
+	"fft_proc.h"
+
+1755171321 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\key\key_scan.c
+	"include.h"
+
+1752227359 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\key\matrix_key.c
+	"include.h"
+	"matrix_key.h"
+
+1743669433 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\key\tkey.c
+	"include.h"
+	"tkey.h"
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\led\led.c
+	"include.h"
+	"led.h"
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\led\spi_led.c
+	"include.h"
+	"spi_led.h"
+
+1755143547 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi.c
+	"include.h"
+	"midi.h"
+
+1755143547 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_keyboard.c
+	"include.h"
+	"midi_keyboard.h"
+
+1750765114 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_metronome.c
+	"include.h"
+	"midi_metronome.h"
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_rec.c
+	"include.h"
+	"midi_rec.h"
+
+1755143547 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_song.c
+	"include.h"
+	"midi_song.h"
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_uart.c
+	"include.h"
+	"midi_uart.h"
+
+1743386452 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_uart.h
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\midi\midi_voice.c
+	"include.h"
+	"midi_voice.h"
+
+1755143547 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\spiflash\spiflash1.c
+	"include.h"
+	"spiflash1.h"
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\spiflash\spiflash1_music_bin.c
+	"include.h"
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\spilcd\lcd_display.c
+	"include.h"
+	"lcd_display.h"
+	"bsp_spi_audio.h"
+
+1743386452 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\spilcd\pic_tbl.c
+	"include.h"
+	"lcd_display.h"
+
+1752830034 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\modules\voice\prevent_howling.c
+	"include.h"
+	"prevent_howling.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\display\display_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\display\ledseg\display_ledseg.c
+	"include.h"
+	"ledseg/display_ledseg.h"
+
+1752227361 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func.c
+	"include.h"
+
+1752227361 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_aux.c
+	"include.h"
+	"func.h"
+	"func_aux.h"
+
+1752227361 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1752584510 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+	"api_spiflash_ex.h"
+
+1743386451 z:\ab180\ab180\sdk\test\talent_trunk1\app\platform\libs\api_spiflash_ex.h
+
+1752227361 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1752227361 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_lowpwr.c
+	"include.h"
+	"func.h"
+
+1752227361 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1752830035 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_speaker.c
+	"include.h"
+	"func.h"
+
+1752227361 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\functions\func_usbdev.c
+	"include.h"
+	"func.h"
+	"func_usbdev.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\main.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\message\msg_aux.c
+	"include.h"
+	"func.h"
+	"func_aux.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\message\msg_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\message\msg_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\message\msg_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\message\msg_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\message\msg_speak.c
+	"include.h"
+	"func.h"
+	"func_speaker.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\message\msg_usbdev.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\plugin\multi_lang.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\plugin\plugin.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_ir.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_key.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_led.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_ledseg.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_linein.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_mute.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_sd.c
+	"include.h"
+
+1752227362 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\port\port_sd1.c
+	"include.h"
+
+1755520121 source:z:\ab180\ab180\sdk\test\talent_trunk1\app\projects\asr\config.c
+	"include.h"
+

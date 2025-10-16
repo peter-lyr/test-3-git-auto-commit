@@ -1,0 +1,646 @@
+# depslib dependency file v1.0
+1745993954 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_asr.c
+	"include.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\include.h
+	"global.h"
+	"xcfg.h"
+	"config.h"
+	"io_def.h"
+	"api.h"
+	"func.h"
+	"bsp.h"
+	"modules.h"
+	"gui.h"
+	"plugin.h"
+	"res.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\global.h
+	<stddef.h>
+	<stdarg.h>
+	<stdbool.h>
+	<stdlib.h>
+	<string.h>
+	"typedef.h"
+	"macro.h"
+	"clib.h"
+	"sfr.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\typedef.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\macro.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\clib.h
+
+1743661801 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\sfr.h
+
+1755596658 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\xcfg.h
+
+1760340347 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\config.h
+	"config_define.h"
+	"config_extra.h"
+
+1756975785 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\config_define.h
+
+1757509240 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\config_extra.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\header\io_def.h
+	"global.h"
+	"config.h"
+	"sfr.h"
+
+1744876927 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api.h
+	"api_buffer.h"
+	"api_cm.h"
+	"api_music.h"
+	"api_sd.h"
+	"api_rtc.h"
+	"api_fs.h"
+	"api_device.h"
+	"api_update.h"
+	"api_dac.h"
+	"api_sysclk.h"
+	"api_msg.h"
+	"api_saradc.h"
+	"api_sys.h"
+	"api_pwr.h"
+	"api_key.h"
+	"api_gpio.h"
+	"api_midi.h"
+	"api_math.h"
+	"api_fft.h"
+	"api_sdadc.h"
+	"api_usb.h"
+	"api_uart.h"
+	"api_sdadc_dc.h"
+	"api_asr.h"
+	"api_alg.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_buffer.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_cm.h
+
+1759222162 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_music.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_sd.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_rtc.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_fs.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_device.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_update.h
+
+1755164054 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_dac.h
+
+1744709586 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_sysclk.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_msg.h
+
+1743217152 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_saradc.h
+
+1757056420 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_sys.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_pwr.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_key.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_gpio.h
+
+1756814884 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_midi.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_math.h
+
+1752476869 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_fft.h
+
+1743473704 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_sdadc.h
+
+1752476869 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_usb.h
+
+1743511930 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_uart.h
+
+1753857359 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_sdadc_dc.h
+
+1744286034 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_asr.h
+
+1752743286 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_alg.h
+
+1758855133 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func.h
+	"func_clock.h"
+	"func_idle.h"
+	"func_music.h"
+	"func_usbdev.h"
+	"func_speaker.h"
+	"func_aux.h"
+	"func_lowpwr.h"
+	"func_exspiflash_music.h"
+	"func_update.h"
+
+1744190968 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_clock.h
+
+1744203553 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_idle.h
+
+1754964544 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_music.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_usbdev.h
+
+1758184891 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_speaker.h
+
+1743473704 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_aux.h
+
+1745204164 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_lowpwr.h
+
+1759222162 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_exspiflash_music.h
+	"spiflash/spiflash1.h"
+
+1758013341 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\spiflash\spiflash1.h
+
+1758858766 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_update.h
+
+1749730362 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp.h
+	"bsp_sys.h"
+	"bsp_param.h"
+	"bsp_dac.h"
+	"bsp_music.h"
+	"bsp_i2c.h"
+	"bsp_huart.h"
+	"bsp_ir.h"
+	"bsp_fs.h"
+	"bsp_spi_audio.h"
+	"bsp_uart.h"
+	"bsp_saradc.h"
+	"bsp_clk.h"
+	"bsp_rtc.h"
+	"bsp_timer.h"
+	"bsp_audio.h"
+	"bsp_eq.h"
+	"bsp_record.h"
+	"bsp_saradc.h"
+	"bsp_vbat.h"
+	"bsp_asr.h"
+	"bsp_voice.h"
+
+1752027016 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_sys.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_param.h
+
+1755596658 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_dac.h
+
+1759222162 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_music.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_i2c.h
+
+1743511930 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_huart.h
+
+1744287821 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_ir.h
+
+1759218883 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_fs.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_spi_audio.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_uart.h
+
+1743421969 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_saradc.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_clk.h
+
+1744190968 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_rtc.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_timer.h
+
+1743473704 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_audio.h
+
+1743511930 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_eq.h
+
+1756130924 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_record.h
+	"record_file.h"
+
+1744947545 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\record_file.h
+
+1743217152 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_vbat.h
+
+1745993954 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_asr.h
+
+1758180673 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_voice.h
+
+1752500409 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\modules.h
+	"fft/fft_proc.h"
+	"key/key_scan.h"
+	"key/matrix_key.h"
+	"spiflash/spiflash1.h"
+	"led/led.h"
+	"led/spi_led.h"
+	"spilcd/lcd_display.h"
+	"midi/midi.h"
+	"midi/midi_song.h"
+	"midi/midi_rec.h"
+	"midi/midi_keyboard.h"
+	"midi/midi_voice.h"
+	"midi/midi_metronome.h"
+	"key/tkey.h"
+	"dump/dump.h"
+	"voice/prevent_howling.h"
+
+1756130924 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\fft\fft_proc.h
+
+1745413559 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\key\key_scan.h
+
+1751963446 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\key\matrix_key.h
+
+1743473704 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\led\led.h
+
+1755224623 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\led\spi_led.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\spilcd\lcd_display.h
+
+1752500409 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi.h
+
+1745720336 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_song.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_rec.h
+
+1752500409 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_keyboard.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_voice.h
+
+1745413559 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_metronome.h
+
+1743513217 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\key\tkey.h
+
+1743564773 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\dump\dump.h
+
+1752743286 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\voice\prevent_howling.h
+
+1744203553 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\gui.h
+	"ledseg/ledseg_common.h"
+	"ledseg/display_ledseg.h"
+	"lcd/lcd.h"
+	"lcd/display_lcd.h"
+	"lcd/display_listbox.h"
+	"lcd/list_view.h"
+	"lcd/listbox.h"
+	"lcd/dialogbox.h"
+	"lcd/display_dialogbox.h"
+	"lcd/lcd_4c16s_3b.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\ledseg\ledseg_common.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\display\ledseg\display_ledseg.h
+	"ledseg/ledseg_7p7s.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\ledseg\ledseg_7p7s.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\lcd\lcd.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\lcd\list_view.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\lcd\listbox.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\lcd\dialogbox.h
+
+1744203553 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\lcd\lcd_4c16s_3b.h
+
+1743473704 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\plugin\plugin.h
+	"multi_lang.h"
+	"port_led.h"
+	"port_sd.h"
+	"port_linein.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\plugin\multi_lang.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_led.h
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_sd.h
+
+1743473704 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_linein.h
+
+1752744285 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\res.h
+
+1756906715 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_audio.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_clk.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_cm.c
+	"include.h"
+
+1755597370 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_dac.c
+	"include.h"
+	"bsp_dac.h"
+
+1743511930 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_eq.c
+	"include.h"
+
+1750382567 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_ext_dump.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_freqdet.c
+	"include.h"
+	"bsp_freqdet.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_freqdet.h
+
+1759218883 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_fs.c
+	"include.h"
+
+1743564773 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_huart.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_i2c.c
+	"include.h"
+
+1744287821 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_ir.c
+	"include.h"
+
+1759222162 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_music.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_param.c
+	"include.h"
+
+1744019209 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_pwm.c
+	"include.h"
+	"bsp_pwm.h"
+
+1744019209 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_pwm.h
+
+1756130924 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_record.c
+	"include.h"
+
+1744190968 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_rtc.c
+	"include.h"
+
+1743421969 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_saradc.c
+	"include.h"
+
+1743659875 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_sdadc_dc.c
+	"include.h"
+
+1760339238 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_spi_audio.c
+	"include.h"
+
+1758855133 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_sys.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_timer.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_uart.c
+	"include.h"
+
+1753076682 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_vbat.c
+	"include.h"
+
+1758180673 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\bsp_voice.c
+	"include.h"
+
+1756972961 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\bsp\record_file.c
+	"include.h"
+	"record_file.h"
+
+1744203553 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\gui.c
+	"include.h"
+	"gui.h"
+
+1744203553 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\lcd\lcd_4c16s_3b.c
+	"include.h"
+	"lcd_4c16s_3b.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\ledseg\ledseg_7p7s.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\gui\ledseg\ledseg_common.c
+	"include.h"
+	"ledseg_common.h"
+	"ledseg_7p7s.h"
+
+1759222162 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\strong_symbol.c
+	"include.h"
+
+1743564773 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\dump\dump_huart.c
+	"include.h"
+
+1743564773 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\dump\dump_spi.c
+	"include.h"
+
+1752027016 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\fft\fft_proc.c
+	"include.h"
+	"fft_proc.h"
+
+1744768966 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\fft\fft_table.c
+	"include.h"
+	"fft_proc.h"
+
+1758268942 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\key\key_scan.c
+	"include.h"
+
+1758268942 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\key\matrix_key.c
+	"include.h"
+	"matrix_key.h"
+
+1743513217 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\key\tkey.c
+	"include.h"
+	"tkey.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\led\led.c
+	"include.h"
+	"led.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\led\spi_led.c
+	"include.h"
+	"spi_led.h"
+
+1759221668 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi.c
+	"include.h"
+	"midi.h"
+
+1755091084 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_keyboard.c
+	"include.h"
+	"midi_keyboard.h"
+
+1745413559 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_metronome.c
+	"include.h"
+	"midi_metronome.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_rec.c
+	"include.h"
+	"midi_rec.h"
+
+1753964303 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_song.c
+	"include.h"
+	"midi_song.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_uart.c
+	"include.h"
+	"midi_uart.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_uart.h
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\midi\midi_voice.c
+	"include.h"
+	"midi_voice.h"
+
+1759221668 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\spiflash\spiflash1.c
+	"include.h"
+	"spiflash1.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\spiflash\spiflash1_music_bin.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\spilcd\lcd_display.c
+	"include.h"
+	"lcd_display.h"
+	"bsp_spi_audio.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\spilcd\pic_tbl.c
+	"include.h"
+	"lcd_display.h"
+
+1752743286 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\modules\voice\prevent_howling.c
+	"include.h"
+	"prevent_howling.h"
+
+1752904814 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\config.c
+	"include.h"
+
+1744203553 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\display\display_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\display\ledseg\display_ledseg.c
+	"include.h"
+	"ledseg/display_ledseg.h"
+
+1760335693 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func.c
+	"include.h"
+
+1743564773 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_aux.c
+	"include.h"
+	"func.h"
+	"func_aux.h"
+
+1744441971 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1759222162 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+	"api_spiflash_ex.h"
+
+1743075049 f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\platform\libs\api_spiflash_ex.h
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1760338108 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_lowpwr.c
+	"include.h"
+	"func.h"
+
+1760336103 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1759222162 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_speaker.c
+	"include.h"
+	"func.h"
+
+1758858766 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_update.c
+	"include.h"
+	"func_update.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\functions\func_usbdev.c
+	"include.h"
+	"func.h"
+	"func_usbdev.h"
+
+1760087212 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\main.c
+	"include.h"
+
+1743473704 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\message\msg_aux.c
+	"include.h"
+	"func.h"
+	"func_aux.h"
+
+1744190968 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\message\msg_clock.c
+	"include.h"
+	"func.h"
+	"func_clock.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\message\msg_exspiflash_music.c
+	"include.h"
+	"func.h"
+	"func_exspiflash_music.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\message\msg_idle.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1760090510 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\message\msg_music.c
+	"include.h"
+	"func.h"
+	"func_music.h"
+
+1756718354 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\message\msg_speak.c
+	"include.h"
+	"func.h"
+	"func_speaker.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\message\msg_usbdev.c
+	"include.h"
+	"func.h"
+	"func_idle.h"
+
+1744286034 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\output\bin\app.xm
+	"config.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\output\bin\download.xm
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\output\bin\res.xm
+
+1755596658 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\output\bin\xcfg.xm
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\plugin\multi_lang.c
+	"include.h"
+
+1752745809 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\plugin\plugin.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_ir.c
+	"include.h"
+
+1752655299 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_key.c
+	"include.h"
+
+1743473704 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_led.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_ledseg.c
+	"include.h"
+
+1743473704 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_linein.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_mute.c
+	"include.h"
+
+1743473704 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_sd.c
+	"include.h"
+
+1743075049 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\port\port_sd1.c
+	"include.h"
+
+1759218883 source:f:\ljn\code\slzl\cp251002-slzl-水流感应mp3\sdk_ab18x_s622_20251010\app\projects\standard\ram.ld
+	"config.h"
+
