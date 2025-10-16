@@ -107,17 +107,17 @@ def scan_and_categorize_files():
     # 收集所有需要处理的文件路径
     all_files = []
     for file_path in git_files:
-        print(
-            "## file_path:",
-            file_path,
-            ", os.path.isdir(file_path)",
-            os.path.isdir(file_path),
-        )
+        # print(
+        #     "## file_path:",
+        #     file_path,
+        #     ", os.path.isdir(file_path)",
+        #     os.path.isdir(file_path),
+        # )
         if os.path.isdir(file_path):
             # 递归扫描目录
             dir_files = scan_directory_recursive(file_path)
-            print("## file_path:", file_path)
-            print("## len(dir_files):", len(dir_files))
+            # print("## file_path:", file_path)
+            # print("## len(dir_files):", len(dir_files))
             for f_path, size_bytes in dir_files:
                 size_mb = size_bytes / (1024 * 1024)
                 all_files.append((f_path, size_mb))
@@ -191,13 +191,12 @@ def execute_git_commands(files_dict, deleted_files):
 
     # 打印结果字典
     if files_dict:
-        print("Files/Folders to be committed:")
+        # print("Files/Folders to be committed:")
         total_size = 0
         for path, size in files_dict.items():
-            print(f"  {path}: {size:.2f} MB")
+            # print(f"  {path}: {size:.2f} MB")
             total_size += size
-
-        print(f"\nTotal size: {total_size:.2f} MB")
+        print(f"Total size: {total_size:.2f} MB")
     else:
         total_size = 0
 
@@ -278,9 +277,9 @@ def execute_git_commands(files_dict, deleted_files):
                 # 提交当前批次
                 if current_batch:
                     current_batch_number += 1
-                    print(
-                        f"\n--- Starting Batch {current_batch_number}/{total_batches} ---"
-                    )
+                    # print(
+                    #     f"\n--- Starting Batch {current_batch_number}/{total_batches} ---"
+                    # )
                     print(
                         f"Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
                     )
