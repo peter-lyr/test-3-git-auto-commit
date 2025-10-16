@@ -4,7 +4,6 @@ import subprocess
 from collections import defaultdict
 
 global commit_info_file
-
 commit_info_file = ""
 
 
