@@ -3,6 +3,10 @@ import sys
 import subprocess
 from collections import defaultdict
 
+global commit_info_file
+
+commit_info_file = ""
+
 
 def get_git_status():
     """获取git状态信息，返回修改和未跟踪的文件列表"""
@@ -28,6 +32,10 @@ def get_git_status():
                 # # 过滤掉已删除的文件
                 # if status != "D":
                 #     file_list.append((status, filename))
+
+                # 去除文件名两端的引号
+                if filename.startswith('"') and filename.endswith('"'):
+                    filename = filename[1:-1]
 
                 file_list.append(filename)
 
@@ -86,9 +94,17 @@ def scan_and_categorize_files():
     # 收集所有需要处理的文件路径
     all_files = []
     for file_path in git_files:
+        print(
+            "## file_path:",
+            file_path,
+            ", os.path.isdir(file_path)",
+            os.path.isdir(file_path),
+        )
         if os.path.isdir(file_path):
             # 递归扫描目录
             dir_files = scan_directory_recursive(file_path)
+            print("## file_path:", file_path)
+            print("## len(dir_files):", len(dir_files))
             for f_path, size_bytes in dir_files:
                 size_mb = size_bytes / (1024 * 1024)
                 all_files.append((f_path, size_mb))
@@ -154,7 +170,7 @@ def scan_and_categorize_files():
     return result_dict
 
 
-def execute_git_commands(commit_info_file, files_dict):
+def execute_git_commands(files_dict):
     """执行git命令"""
     if not files_dict:
         print("No files to commit.")
@@ -173,14 +189,14 @@ def execute_git_commands(commit_info_file, files_dict):
         # 直接提交所有文件
         print("\nTotal size <= 100MB, committing all files at once...")
         try:
-            # subprocess.run(["git", "add", "-A"], check=True)
-            print("git add -A completed")
+            print("> git add -A")
+            subprocess.run(["git", "add", "-A"], check=True)
 
-            # subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
-            print("git commit completed")
+            print(f"> git commit -F {commit_info_file}")
+            subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
 
-            # subprocess.run(["git", "push"], check=True)
-            print("git push completed")
+            print("> git push")
+            subprocess.run(["git", "push"], check=True)
 
             return True
         except subprocess.CalledProcessError as e:
@@ -205,7 +221,7 @@ def execute_git_commands(commit_info_file, files_dict):
             else:
                 # 提交当前批次
                 if current_batch:
-                    commit_batch(current_batch, commit_info_file)
+                    commit_batch(current_batch, current_batch_size)
                     current_batch = []
                     current_batch_size = 0
 
@@ -215,35 +231,59 @@ def execute_git_commands(commit_info_file, files_dict):
 
         # 提交最后一批
         if current_batch:
-            commit_batch(current_batch, commit_info_file)
+            commit_batch(current_batch, current_batch_size)
 
         return True
 
 
-def commit_batch(file_paths, commit_info_file):
+def commit_batch(file_paths, batch_total_size):
     """提交一个批次的文件"""
-    print(f"\nCommitting batch ({len(file_paths)} files)...")
+    print(
+        f"\nCommitting batch ({len(file_paths)} files, total size: {batch_total_size:.2f} MB)..."
+    )
+
+    # 打印批次中每个文件/文件夹的大小
+    print("Batch contents:")
+    for file_path in file_paths:
+        # 计算文件/文件夹的大小
+        if os.path.isdir(file_path):
+            # 如果是文件夹，计算文件夹下所有文件的总大小
+            dir_size = 0
+            for root, dirs, files in os.walk(file_path):
+                for file in files:
+                    file_path_full = os.path.join(root, file)
+                    try:
+                        dir_size += os.path.getsize(file_path_full)
+                    except OSError:
+                        pass
+            dir_size_mb = dir_size / (1024 * 1024)
+            print(f"  {file_path}: {dir_size_mb:.2f} MB (folder)")
+        else:
+            # 如果是文件，直接获取大小
+            file_size_mb = get_file_size_mb(file_path)
+            print(f"  {file_path}: {file_size_mb:.2f} MB")
 
     try:
         # git add 每个文件
         for file_path in file_paths:
-            print(file_path)
-            # subprocess.run(["git", "add", file_path], check=True)
-        print("git add completed for batch")
+            print(f"> git add {file_path}")
+            subprocess.run(["git", "add", file_path], check=True)
+        # print("git add completed for batch")
 
         # git commit
-        # subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
-        print("git commit completed for batch")
+        print(f"> git commit -F {commit_info_file}")
+        subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
 
         # git push
-        # subprocess.run(["git", "push"], check=True)
-        print("git push completed for batch")
+        print("> git push")
+        subprocess.run(["git", "push"], check=True)
 
     except subprocess.CalledProcessError as e:
         print(f"Error committing batch: {e}")
 
 
 def main():
+    global commit_info_file
     if len(sys.argv) != 2:
         print("Usage: python script.py <commit-info.txt>")
         sys.exit(1)
@@ -263,7 +303,7 @@ def main():
         return
 
     # 执行git命令
-    success = execute_git_commands(commit_info_file, files_dict)
+    success = execute_git_commands(files_dict)
 
     if success:
         print("\nAll operations completed successfully!")
