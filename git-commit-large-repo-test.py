@@ -11,8 +11,14 @@ commit_info_file = ""
 def get_git_status():
     """获取git状态信息，返回修改和未跟踪的文件列表"""
     try:
+        # 明确指定编码为UTF-8
         result = subprocess.run(
-            ["git", "status", "--porcelain"], capture_output=True, text=True, check=True
+            ["git", "status", "--porcelain"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",  # 使用替换策略处理无法解码的字符
+            check=True,
         )
         lines = result.stdout.strip().split("\n") if result.stdout.strip() else []
 
@@ -206,8 +212,34 @@ def execute_git_commands(files_dict):
         # 分批提交
         print("\nTotal size > 100MB, committing in batches...")
 
+        # 计算总批次和已提交大小
+        total_batches = 0
         current_batch = []
         current_batch_size = 0
+        committed_size = 0
+
+        # 先计算总共有多少批次
+        for path, size in files_dict.items():
+            if size > 100:
+                continue
+
+            if current_batch_size + size <= 100:
+                current_batch.append(path)
+                current_batch_size += size
+            else:
+                total_batches += 1
+                current_batch = [path]
+                current_batch_size = size
+
+        if current_batch:
+            total_batches += 1
+
+        print(f"Total batches: {total_batches}")
+
+        # 重置变量用于实际提交
+        current_batch = []
+        current_batch_size = 0
+        current_batch_number = 0
 
         for path, size in files_dict.items():
             # 跳过单个文件超过100MB的
@@ -221,7 +253,26 @@ def execute_git_commands(files_dict):
             else:
                 # 提交当前批次
                 if current_batch:
-                    commit_batch(current_batch, current_batch_size)
+                    current_batch_number += 1
+                    print(
+                        f"\n--- Starting Batch {current_batch_number}/{total_batches} ---"
+                    )
+                    print(
+                        f"Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
+                    )
+                    commit_batch(
+                        current_batch,
+                        current_batch_size,
+                        current_batch_number,
+                        total_batches,
+                    )
+                    committed_size += current_batch_size
+                    print(
+                        f"--- Completed Batch {current_batch_number}/{total_batches} ---"
+                    )
+                    print(
+                        f"Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
+                    )
                     current_batch = []
                     current_batch_size = 0
 
@@ -231,15 +282,27 @@ def execute_git_commands(files_dict):
 
         # 提交最后一批
         if current_batch:
-            commit_batch(current_batch, current_batch_size)
+            current_batch_number += 1
+            print(f"\n--- Starting Batch {current_batch_number}/{total_batches} ---")
+            print(
+                f"Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
+            )
+            commit_batch(
+                current_batch, current_batch_size, current_batch_number, total_batches
+            )
+            committed_size += current_batch_size
+            print(f"--- Completed Batch {current_batch_number}/{total_batches} ---")
+            print(
+                f"Progress: {committed_size:.2f}/{total_size:.2f} MB ({committed_size/total_size*100:.1f}%)"
+            )
 
         return True
 
 
-def commit_batch(file_paths, batch_total_size):
+def commit_batch(file_paths, batch_total_size, batch_number, total_batches):
     """提交一个批次的文件"""
     print(
-        f"\nCommitting batch ({len(file_paths)} files, total size: {batch_total_size:.2f} MB)..."
+        f"\nCommitting batch {batch_number}/{total_batches} ({len(file_paths)} files, total size: {batch_total_size:.2f} MB)..."
     )
 
     # 打印批次中每个文件/文件夹的大小
