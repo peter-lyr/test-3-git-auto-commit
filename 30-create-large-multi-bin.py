@@ -252,7 +252,7 @@ def generate_random_bin_files_parallel():
             current_file_size = random.randint(int(min_file_size), int(max_possible))
 
         # 生成文件名，使用4位数字格式
-        filename = f"e{file_count:04d}.bin"
+        filename = f"f{file_count:04d}.bin"
         file_tasks.append((filename, current_file_size))
 
         bytes_written_total += current_file_size
