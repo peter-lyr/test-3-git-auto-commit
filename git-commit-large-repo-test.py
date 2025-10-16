@@ -51,6 +51,7 @@ def calculate_size(files):
         try:
             if os.path.exists(filepath):
                 size = os.path.getsize(filepath)
+                print("filepath:", filepath, ", size:", size)
                 file_sizes[filepath] = size
         except OSError as e:
             print(f"无法获取文件大小 {filepath}: {e}")
