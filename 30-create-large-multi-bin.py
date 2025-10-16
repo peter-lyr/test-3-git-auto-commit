@@ -222,12 +222,12 @@ def progress_monitor(progress_queue, total_files, total_size_bytes):
 def generate_random_bin_files_parallel():
     """使用多进程生成多个文件"""
     # 总大小设置为102GB
-    total_size_gb = 0.3
+    total_size_gb = 2
     total_size_bytes = total_size_gb * 1024 * 1024 * 1024  # 102GB in bytes
 
     # 每个文件大小范围（30MB到50MB）
-    min_file_size = 40 * 1024 * 1024  # 30MB in bytes
-    max_file_size = 120 * 1024 * 1024  # 50MB in bytes
+    min_file_size = 30 * 1024 * 1024  # 30MB in bytes
+    max_file_size = 300 * 1024 * 1024  # 50MB in bytes
 
     print(f"目标总大小: {total_size_gb:3f} GB")
     print(
@@ -252,7 +252,7 @@ def generate_random_bin_files_parallel():
             current_file_size = random.randint(int(min_file_size), int(max_possible))
 
         # 生成文件名，使用4位数字格式
-        filename = f"g3{file_count:04d}.bin"
+        filename = f"h{file_count:04d}.bin"
         file_tasks.append((filename, current_file_size))
 
         bytes_written_total += current_file_size
