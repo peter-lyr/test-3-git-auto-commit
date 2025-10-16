@@ -1,237 +1,275 @@
-# python需求：
-# 传递一个参数
-# py文件 commit-info.txt
-# git add, git commit -F commit-info.txt, git push
-# 扫描所有已修改和未跟踪的文件：
-# 从最深层的文件夹开始扫描，如果文件夹下所有文件总大小小于等于50M，则加到字典里，键为文件夹相对路径，值为总大小
-# 如果文件夹下所有文件总大小大于50M，则单独把所有文件都加入到到字典里，键为文件相对路径，只为文件大小
-# 在这个字典的基础之上去git add commit push，这三个命令用os.system去调用
-# 如果总大小小于100M，则直接git add -A
-# 否则分多个批次进行：
-# 每个批次的git add的总大小要小于100M
-# 如果某个文件的大小超过100M则跳过它
-
-
 import os
 import sys
 import subprocess
-from pathlib import Path
 from collections import defaultdict
 
 
-def get_git_status_files():
-    """获取所有已修改和未跟踪的文件"""
+def get_git_status():
+    """获取git状态信息，返回修改和未跟踪的文件列表"""
     try:
-        # 获取已修改的文件
         result = subprocess.run(
             ["git", "status", "--porcelain"], capture_output=True, text=True, check=True
         )
+        lines = result.stdout.strip().split("\n") if result.stdout.strip() else []
 
-        files = []
-        for line in result.stdout.strip().split("\n"):
+        file_list = []
+        for line in lines:
             if line.strip():
-                # 状态码在前2位，文件名从第3位开始
+                # print("----", line)
+                # 解析状态和文件名
                 status = line[:2].strip()
-                filepath = line[3:].strip()
+                filename = line[3:].strip()
+                # print(status, "-----", filename)
 
-                # 只关注已修改(M)和未跟踪(??)的文件
-                if status in ["M", "A", "??"]:
-                    files.append(filepath)
+                # 处理重命名的情况
+                if " -> " in filename:
+                    filename = filename.split(" -> ")[1]
 
-        return files
+                # # 过滤掉已删除的文件
+                # if status != "D":
+                #     file_list.append((status, filename))
+
+                file_list.append(filename)
+
+        return file_list
     except subprocess.CalledProcessError as e:
-        print(f"获取Git状态失败: {e}")
+        print(f"Error getting git status: {e}")
+        return []
+    except Exception as e:
+        print(f"Unexpected error: {e}")
         return []
 
 
-def calculate_size(files):
-    """计算文件大小，返回文件路径和大小的字典"""
-    file_sizes = {}
-    for filepath in files:
+def scan_directory_recursive(path):
+    """递归扫描目录，返回所有文件的路径和大小"""
+    file_sizes = []
+
+    if os.path.isfile(path):
+        # 如果是文件，直接返回文件大小
         try:
-            if os.path.exists(filepath):
-                size = os.path.getsize(filepath)
-                print("filepath:", filepath, ", size:", size)
-                file_sizes[filepath] = size
-        except OSError as e:
-            print(f"无法获取文件大小 {filepath}: {e}")
+            size = os.path.getsize(path)
+            file_sizes.append((path, size))
+        except OSError:
+            pass
+    elif os.path.isdir(path):
+        # 如果是目录，递归扫描
+        try:
+            for root, dirs, files in os.walk(path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    try:
+                        size = os.path.getsize(file_path)
+                        file_sizes.append((file_path, size))
+                    except OSError:
+                        continue
+        except OSError:
+            pass
 
     return file_sizes
 
 
-def organize_files_by_folder(file_sizes):
-    """按文件夹组织文件，根据大小决定是否合并文件夹"""
-    folder_files = defaultdict(list)
-    folder_sizes = {}
+def get_file_size_mb(file_path):
+    """获取文件大小（MB）"""
+    try:
+        return os.path.getsize(file_path) / (1024 * 1024)
+    except OSError:
+        return 0
 
-    # 首先按文件夹分组
-    for filepath, size in file_sizes.items():
-        folder = os.path.dirname(filepath) or "."  # 根目录用'.'表示
-        folder_files[folder].append((filepath, size))
 
-    # 计算每个文件夹的总大小
-    for folder, files in folder_files.items():
-        total_size = sum(size for _, size in files)
-        folder_sizes[folder] = total_size
+def scan_and_categorize_files():
+    """扫描并分类文件"""
+    git_files = get_git_status()
+    if not git_files:
+        print("No modified or untracked files found.")
+        return {}
 
-    # 处理嵌套文件夹，从最深层的开始
-    sorted_folders = sorted(
-        folder_files.keys(), key=lambda x: x.count(os.path.sep), reverse=True
-    )
+    # 收集所有需要处理的文件路径
+    all_files = []
+    for file_path in git_files:
+        if os.path.isdir(file_path):
+            # 递归扫描目录
+            dir_files = scan_directory_recursive(file_path)
+            for f_path, size_bytes in dir_files:
+                size_mb = size_bytes / (1024 * 1024)
+                all_files.append((f_path, size_mb))
+        else:
+            all_files.append((file_path, get_file_size_mb(file_path)))
 
-    result = {}
-    processed_folders = set()
+    if not all_files:
+        print("No valid files to process.")
+        return {}
 
-    for folder in sorted_folders:
-        # 如果这个文件夹已经被处理（作为子文件夹被父文件夹包含），则跳过
-        if any(folder.startswith(p + os.path.sep) for p in processed_folders):
+    # 按目录分组，过滤掉空目录
+    dir_files_map = defaultdict(list)
+    for file_path, size_mb in all_files:
+        dir_path = os.path.dirname(file_path)
+        # 过滤掉空目录名
+        if dir_path:
+            dir_files_map[dir_path].append((file_path, size_mb))
+
+    # 计算目录深度
+    dir_depths = {}
+    for dir_path in dir_files_map.keys():
+        depth = dir_path.count(os.sep)
+        dir_depths[dir_path] = depth
+
+    # 按深度排序（从深到浅）
+    sorted_dirs = sorted(dir_depths.keys(), key=lambda x: dir_depths[x], reverse=True)
+
+    result_dict = {}
+    processed_files = set()
+
+    # 从最深目录开始处理
+    for dir_path in sorted_dirs:
+        # 检查是否所有文件都已被处理
+        current_files = [
+            (f, s) for f, s in dir_files_map[dir_path] if f not in processed_files
+        ]
+        if not current_files:
             continue
 
-        total_size = folder_sizes[folder]
+        total_size = sum(size for _, size in current_files)
 
-        if total_size <= 50 * 1024 * 1024:  # 50MB
-            # 文件夹总大小 <= 50MB，添加整个文件夹
-            result[folder] = total_size
-            processed_folders.add(folder)
+        if total_size <= 50:
+            # 整个目录添加到结果
+            result_dict[dir_path] = total_size
+            # 标记这些文件为已处理
+            for file_path, _ in current_files:
+                processed_files.add(file_path)
         else:
-            # 文件夹总大小 > 50MB，单独添加每个文件
-            for filepath, size in folder_files[folder]:
-                if size <= 100 * 1024 * 1024:  # 跳过超过100MB的单个文件
-                    result[filepath] = size
-            processed_folders.add(folder)
+            # 单独添加文件
+            for file_path, size_mb in current_files:
+                if file_path not in processed_files:
+                    result_dict[file_path] = size_mb
+                    processed_files.add(file_path)
 
-    # 处理根目录的文件
-    root_files = folder_files.get(".", [])
-    root_total = sum(size for _, size in root_files)
+    # 处理不在任何目录中的文件（根目录下的文件）
+    for file_path, size_mb in all_files:
+        # 根目录下的文件（没有父目录或父目录为空）
+        dir_name = os.path.dirname(file_path)
+        if not dir_name and file_path not in processed_files:
+            result_dict[file_path] = size_mb
+            processed_files.add(file_path)
 
-    if root_total <= 50 * 1024 * 1024 and "." not in processed_folders:
-        result["."] = root_total
-    elif "." not in processed_folders:
-        for filepath, size in root_files:
-            if size <= 100 * 1024 * 1024:
-                result[filepath] = size
-
-    return result
+    return result_dict
 
 
-def create_batches(file_dict, max_batch_size=100 * 1024 * 1024):
-    """创建批次，每个批次总大小不超过max_batch_size"""
-    if not file_dict:
-        return []
+def execute_git_commands(commit_info_file, files_dict):
+    """执行git命令"""
+    if not files_dict:
+        print("No files to commit.")
+        return False
 
-    total_size = sum(file_dict.values())
+    # 打印结果字典
+    print("Files/Folders to be committed:")
+    total_size = 0
+    for path, size in files_dict.items():
+        print(f"  {path}: {size:.2f} MB")
+        total_size += size
 
-    # 如果总大小小于100MB，直接作为一个批次
-    if total_size <= max_batch_size:
-        return [list(file_dict.keys())]
+    print(f"\nTotal size: {total_size:.2f} MB")
 
-    # 否则需要分批
-    batches = []
-    current_batch = []
-    current_size = 0
+    if total_size <= 100:
+        # 直接提交所有文件
+        print("\nTotal size <= 100MB, committing all files at once...")
+        try:
+            # subprocess.run(["git", "add", "-A"], check=True)
+            print("git add -A completed")
 
-    # 按文件大小降序排序，优先处理大文件
-    sorted_items = sorted(file_dict.items(), key=lambda x: x[1], reverse=True)
+            # subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
+            print("git commit completed")
 
-    for path, size in sorted_items:
-        # 如果单个文件就超过批次大小，跳过
-        if size > max_batch_size:
-            print(f"跳过过大文件: {path} ({size / 1024 / 1024:.2f}MB)")
-            continue
+            # subprocess.run(["git", "push"], check=True)
+            print("git push completed")
 
-        if current_size + size <= max_batch_size:
-            current_batch.append(path)
-            current_size += size
-        else:
-            # 当前批次已满，开始新批次
-            if current_batch:
-                batches.append(current_batch)
-            current_batch = [path]
-            current_size = size
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"Error executing git commands: {e}")
+            return False
+    else:
+        # 分批提交
+        print("\nTotal size > 100MB, committing in batches...")
 
-    # 添加最后一个批次
-    if current_batch:
-        batches.append(current_batch)
+        current_batch = []
+        current_batch_size = 0
 
-    return batches
-
-
-def git_operations(batches, commit_file):
-    """执行Git操作"""
-    if not batches:
-        print("没有需要提交的文件")
-        return
-
-    print(f"总共 {len(batches)} 个批次需要提交")
-
-    for i, batch in enumerate(batches, 1):
-        print(f"\n正在处理第 {i}/{len(batches)} 个批次...")
-
-        # 添加文件到Git
-        for filepath in batch:
-            try:
-                if os.path.isdir(filepath) and filepath != ".":
-                    # 如果是文件夹，添加整个文件夹
-                    subprocess.run(["git", "add", filepath], check=True)
-                    print(f"添加文件夹: {filepath}")
-                else:
-                    # 单个文件或根目录
-                    subprocess.run(["git", "add", filepath], check=True)
-                    print(f"添加文件: {filepath}")
-            except subprocess.CalledProcessError as e:
-                print(f"添加失败 {filepath}: {e}")
+        for path, size in files_dict.items():
+            # 跳过单个文件超过100MB的
+            if size > 100:
+                print(f"Skipping large file: {path} ({size:.2f} MB)")
                 continue
 
-        # 提交
-        try:
-            subprocess.run(["git", "commit", "-F", commit_file], check=True)
-            print("提交成功")
-        except subprocess.CalledProcessError as e:
-            print(f"提交失败: {e}")
-            continue
+            if current_batch_size + size <= 100:
+                current_batch.append(path)
+                current_batch_size += size
+            else:
+                # 提交当前批次
+                if current_batch:
+                    commit_batch(current_batch, commit_info_file)
+                    current_batch = []
+                    current_batch_size = 0
 
-        # 推送
-        try:
-            subprocess.run(["git", "push"], check=True)
-            print("推送成功")
-        except subprocess.CalledProcessError as e:
-            print(f"推送失败: {e}")
-            continue
+                # 开始新批次
+                current_batch.append(path)
+                current_batch_size = size
+
+        # 提交最后一批
+        if current_batch:
+            commit_batch(current_batch, commit_info_file)
+
+        return True
+
+
+def commit_batch(file_paths, commit_info_file):
+    """提交一个批次的文件"""
+    print(f"\nCommitting batch ({len(file_paths)} files)...")
+
+    try:
+        # git add 每个文件
+        for file_path in file_paths:
+            print(file_path)
+            # subprocess.run(["git", "add", file_path], check=True)
+        print("git add completed for batch")
+
+        # git commit
+        # subprocess.run(["git", "commit", "-F", commit_info_file], check=True)
+        print("git commit completed for batch")
+
+        # git push
+        # subprocess.run(["git", "push"], check=True)
+        print("git push completed for batch")
+
+    except subprocess.CalledProcessError as e:
+        print(f"Error committing batch: {e}")
 
 
 def main():
     if len(sys.argv) != 2:
-        print("用法: python script.py commit-info.txt")
+        print("Usage: python script.py <commit-info.txt>")
         sys.exit(1)
 
-    commit_file = sys.argv[1]
+    commit_info_file = sys.argv[1]
 
-    if not os.path.exists(commit_file):
-        print(f"提交信息文件不存在: {commit_file}")
+    # 检查提交信息文件是否存在
+    if not os.path.exists(commit_info_file):
+        print(f"Error: Commit info file '{commit_info_file}' not found.")
         sys.exit(1)
 
-    print("扫描Git状态...")
-    git_files = get_git_status_files()
+    # 扫描和分类文件
+    files_dict = scan_and_categorize_files()
 
-    if not git_files:
-        print("没有找到需要提交的文件")
+    if not files_dict:
+        print("No files to process.")
         return
 
-    print(f"找到 {len(git_files)} 个需要处理的文件")
+    # 执行git命令
+    success = execute_git_commands(commit_info_file, files_dict)
 
-    print("计算文件大小...")
-    file_sizes = calculate_size(git_files)
-
-    print("按文件夹组织文件...")
-    organized_files = organize_files_by_folder(file_sizes)
-
-    print("创建提交批次...")
-    batches = create_batches(organized_files)
-
-    print("执行Git操作...")
-    git_operations(batches, commit_file)
-
-    print("\n所有操作完成!")
+    if success:
+        print("\nAll operations completed successfully!")
+    else:
+        print("\nSome operations failed.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
